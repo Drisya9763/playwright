@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang=""en>
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Form</title>
+</head>
+<body>
+    <h2>Payment Details</h2>
+    <form id="payment-form">
+        <label for="card-name">Cardholder Name</label>
+        <input 
+            type="text"
+            id="card-name"
+            name="cardName"
+            required
+        >
+        <br><br>
+        <label for="card-number">Card Number</label>
+        <input 
+            type="text"
+            id="card-number"
+            name="cardNumber"
+            required
+        >
+        <br><br>
+        <button type="submit">Pay Now</button>    
+    </form>
+    <p id="payment-result" role="status"></p>
+    <script>
+        document
+            .getElementById("payment-form")
+            .addEventListener("submit", function(event) {
+                event.preventDefault();
+                document.getElementById(
+                    "payment-result"
+                ).textContent = "Payment form submitted successfully."
+            });
+    </script>
+</body>
+</html>
