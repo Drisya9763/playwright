@@ -45,23 +45,22 @@ def test_user_status():
 
 
 #Create our First Test
+import re
+from playwright.sync_api import expect 
 
-# from playwright.sync_api import expect 
+def test_amazon_homepage(page):
+   response = page.goto(
+     "https://www.amazon.com",
+     wait_until="domcontentloaded",#Browser has finished parsing the initial HTML document
+     timeout=15000
+   )
+   print("Response status:", response.status if response else None)
+   print("Page title: ",repr(page.title())) 
+   print("Current URL:", page.url)
 
-# def test_amazon_homepage(page):
-#    response = page.goto(
-#      "https://www.amazon.com",
-#      wait_until="domcontentloaded",#Browser has finished parsing the initial HTML document
-#      timeout=15000
-#    )
-#    print("Response status:", response.status if response else None)
-#    print("Page title: ",repr(page.title())) 
-#    print("Current URL:", page.url)
-#    print("Page content:", page.locator("body").inner_text()[:50])
-
-#    expect(page).to_have_title(
-#       "Amazon.com. Spend less. Smile more.", timeout=15000
-#    )
+   expect(page).to_have_title(
+       re.compile(r"Amazon\.com")
+   )
 
 #Locators: Tells Playwright which element on the page to interact with
 #Eg: Login buttons, Username and Password, Search boxes, Links,Checkboxes
